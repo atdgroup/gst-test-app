@@ -85,7 +85,6 @@ play_camera(void)
 	pipeline = gst_pipeline_new("VideoPipeline");
 
 	g_print ("Trying to create source ... ");
-	//source = gst_element_factory_make("v4l2src", "source");
 	source = gst_element_factory_make("videotestsrc", "source");
 	if (source == NULL)
 		goto no_source;
@@ -126,7 +125,7 @@ play_camera(void)
 
 	no_source:
 	{
-		g_error ("Could not create GStreamer 'v4l2src' element. "
+		g_error ("Could not create GStreamer source element. "
 				"Please install it");
 		/* not reached, g_error aborts */
 		return;
@@ -134,7 +133,7 @@ play_camera(void)
 
 	no_sink:
 	{
-		g_error ("Could not create GStreamer 'xvimagesink' element. "
+		g_error ("Could not create GStreamer sink element. "
 				"Please install it");
 		/* not reached, g_error aborts */
 		return;
