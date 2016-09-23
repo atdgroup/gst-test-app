@@ -1,4 +1,11 @@
-gst-app is a template for writing your own GStreamer-based app.
+GStreamer test program for testing elements.
+
+Will take source video from the videotestsrc or from a video file, run it through elements of you choice, including overlays etc. and then output video to the screen in a standalone window via autovideosink.
+
+
+
+Legacy readme:
+Based on the gst-app template for writing your own GStreamer-based app.
 
 The code is deliberately kept simple so that you quickly understand the basics
 of how to set up autotools and your source tree.

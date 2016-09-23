@@ -1,4 +1,4 @@
-/* Copyright (C) 2006 Tim-Philipp Müller <tim centricular net>
+/* Copyright (C) 2016 Paul Barber
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -81,26 +81,21 @@ play_camera(void)
 	GstElement *sink;
 	GstBus *bus;
 	guint bus_watch_id;
-	gchar *name;
 
 	pipeline = gst_pipeline_new("VideoPipeline");
 
 	g_print ("Trying to create source ... ");
 	//source = gst_element_factory_make("v4l2src", "source");
-	source = gst_element_factory_make("vrmavc2src", "source");
+	source = gst_element_factory_make("videotestsrc", "source");
 	if (source == NULL)
 		goto no_source;
-	g_object_get (G_OBJECT(source), "device-name", &name, NULL);
-	g_print ("%s OK!\n", name);
-	g_free(name);
+	g_print ("source OK!\n");
 
 	g_print ("Trying to create sink ... ");
-	sink = gst_element_factory_make("xvimagesink", "sink");
+	sink = gst_element_factory_make("autovideosink", "sink");
 	if (sink == NULL)
 		goto no_sink;
-	g_object_get (G_OBJECT(sink), "device-name", &name, NULL);
-	g_print ("%s OK!\n", name);
-	g_free(name);
+	g_print ("sink OK!\n");
 
 	g_print ("Add elements to a bin ... \n");
 	gst_bin_add_many(GST_BIN(pipeline), source, sink, NULL);
